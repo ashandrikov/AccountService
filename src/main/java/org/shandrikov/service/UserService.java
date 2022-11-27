@@ -15,6 +15,7 @@ import org.shandrikov.mapper.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -65,8 +66,14 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     UserRepository userRepository;
-    @Autowired
+
     private PasswordEncoder encoder;
+
+    @Autowired
+    public UserService(@Lazy PasswordEncoder encoder) {
+        this.encoder = encoder;
+    }
+
     @Autowired
     SecurityEventsService securityEventsService;
 

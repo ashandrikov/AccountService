@@ -14,7 +14,8 @@ import javax.persistence.UniqueConstraint;
 import java.time.YearMonth;
 
 @Entity
-@Table(uniqueConstraints={
+@Table(name = "payments",
+        uniqueConstraints={
         @UniqueConstraint(columnNames = {"email", "period"})
 })
 @Data

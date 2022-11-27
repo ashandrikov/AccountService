@@ -2,6 +2,7 @@ package org.shandrikov.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -38,10 +39,7 @@ public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
                     .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // no session
                 .and()
-                    .exceptionHandling().accessDeniedHandler(accessDeniedHandler())
-                .and()
-                    .formLogin()
-                    .permitAll();
+                    .exceptionHandling().accessDeniedHandler(accessDeniedHandler());
     }
 
     @Override
