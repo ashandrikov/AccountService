@@ -1,4 +1,4 @@
-package dto;
+package org.shandrikov.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

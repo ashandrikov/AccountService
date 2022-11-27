@@ -1,4 +1,4 @@
-package util;
+package org.shandrikov.util;
 
 public class StringPool {
     public static final String USER_EXISTS = "User exist!";

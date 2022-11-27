@@ -1,4 +1,4 @@
-package dto;
+package org.shandrikov.dto;
 
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;

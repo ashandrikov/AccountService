@@ -1,4 +1,4 @@
-package exception;
+package org.shandrikov.exception;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.http.HttpStatus;
