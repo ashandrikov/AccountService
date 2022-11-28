@@ -2,7 +2,7 @@ package org.shandrikov.configuration;
 
 import org.shandrikov.entity.User;
 import org.shandrikov.enums.EventAction;
-import org.shandrikov.service.SecurityEventsService;
+import org.shandrikov.service.impl.SecurityEventsServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class CustomAccessDeniedHandler implements AccessDeniedHandler {
-    private static final Logger LOGGER = LoggerFactory.getLogger(RestAuthenticationEntryPoint.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CustomAccessDeniedHandler.class);
     public static final String ACCESS_DENIED_USER = "Access for user %s denied";
     @Autowired
-    SecurityEventsService securityEventsService;
+    SecurityEventsServiceImpl securityEventsService;
     @Override
     public void handle(HttpServletRequest request,
                        HttpServletResponse response,

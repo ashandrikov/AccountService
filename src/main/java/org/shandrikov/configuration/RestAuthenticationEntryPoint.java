@@ -4,8 +4,8 @@ import org.shandrikov.entity.User;
 import org.shandrikov.enums.EventAction;
 import org.shandrikov.enums.Role;
 import org.shandrikov.repository.UserRepository;
-import org.shandrikov.service.SecurityEventsService;
-import org.shandrikov.service.UserService;
+import org.shandrikov.service.impl.SecurityEventsServiceImpl;
+import org.shandrikov.service.impl.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +22,9 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
     private static final Logger LOGGER = LoggerFactory.getLogger(RestAuthenticationEntryPoint.class);
     public static final String LOGIN_FAILED_USER = "Login for user %s failed";
     @Autowired
-    SecurityEventsService securityEventsService;
+    SecurityEventsServiceImpl securityEventsService;
     @Autowired
-    UserService userService;
+    UserServiceImpl userService;
     @Autowired
     UserRepository userRepository;
     @Override

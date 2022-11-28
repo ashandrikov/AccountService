@@ -2,10 +2,10 @@ package org.shandrikov.controller;
 
 import org.shandrikov.dto.PaymentInDTO;
 import org.shandrikov.entity.Payment;
+import org.shandrikov.entity.User;
 import org.shandrikov.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -30,17 +30,16 @@ public class AccountController {
     }
 
     @PutMapping("/acct/payments")
-    public Map<String, String> changeSalary(@RequestBody PaymentInDTO payment){
-        accountService.updatePayment(payment);
-        return Map.of("status", "Updated successfully!");
+    public Map<String, String> changePayment(@RequestBody PaymentInDTO payment){
+        return accountService.updatePayment(payment);
     }
 
     @GetMapping("/empl/payment")
-    public Object showPayroll(@RequestParam(required = false) String period, @AuthenticationPrincipal UserDetails userDetails){
+    public Object showPayroll(@RequestParam(required = false) String period, @AuthenticationPrincipal User user){
         if (period == null){
-            return accountService.showPaymentsForEmployee(userDetails);
+            return accountService.showPaymentsForEmployee(user);
         }
-        return accountService.showPaymentForPeriod(period, userDetails);
+        return accountService.showPaymentForPeriod(period, user);
     }
 
     @GetMapping("/acct/payments")

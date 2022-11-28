@@ -1,13 +1,13 @@
 package org.shandrikov.controller;
 
-import org.shandrikov.dto.LockUserInDTO;
+import org.shandrikov.dto.LockUserDTO;
 import org.shandrikov.dto.PasswordDTO;
-import org.shandrikov.dto.UserChangeRoleInDTO;
+import org.shandrikov.dto.UserChangeRoleDTO;
 import org.shandrikov.dto.UserInDTO;
 import org.shandrikov.dto.UserOutDTO;
+import org.shandrikov.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.shandrikov.service.UserService;
+import org.shandrikov.service.impl.UserServiceImpl;
 
 import java.util.List;
 import java.util.Map;
@@ -28,7 +28,7 @@ import static org.shandrikov.util.StringPool.PASSWORD_UPDATED;
 @RequestMapping("/api")
 public class UserController {
     @Autowired
-    UserService userService;
+    UserServiceImpl userService;
 
     @PostMapping("/auth/signup")
     public UserOutDTO signup(@RequestBody UserInDTO user){
@@ -36,9 +36,9 @@ public class UserController {
     }
 
     @PostMapping("/auth/changepass")
-    public Map<String, String> changePassword(@RequestBody PasswordDTO passwordDTO, @AuthenticationPrincipal UserDetails userDetails){
-        userService.updatePassword(userDetails, passwordDTO);
-        return Map.of("email", userDetails.getUsername(), "status", PASSWORD_UPDATED);
+    public Map<String, String> changePassword(@RequestBody PasswordDTO passwordDTO, @AuthenticationPrincipal User user){
+        userService.updatePassword(user, passwordDTO);
+        return Map.of("email", user.getUsername(), "status", PASSWORD_UPDATED);
     }
 
     @GetMapping("/admin/user")
@@ -53,12 +53,12 @@ public class UserController {
     }
 
     @PutMapping("/admin/user/role")
-    public UserOutDTO changeUserRoles(@RequestBody UserChangeRoleInDTO userDTO){
+    public UserOutDTO changeUserRoles(@RequestBody UserChangeRoleDTO userDTO){
         return userService.changeUserRole(userDTO);
     }
 
     @PutMapping("/admin/user/access")
-    public Map<String, String> lockUnlockUser(@RequestBody LockUserInDTO userDTO){
+    public Map<String, String> lockUnlockUser(@RequestBody LockUserDTO userDTO){
         return userService.lockOrUnlockUser(userDTO);
     }
 }

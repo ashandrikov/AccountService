@@ -17,5 +17,5 @@ public class StringPool {
     public static final String USER_CREATED = "User %s was created successfully!";
     public static final String PASSWORD_UPDATED_USER = "The password for user %s was updated!";
     public static final String USER_LOCKED_BRUTE = "User %s was LOCKED after 5 attempts to login";
-
+    public static final String SMTH_WRONG = "Smth went wrong!";
 }

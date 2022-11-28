@@ -1,4 +1,4 @@
-package org.shandrikov.mapper;
+package org.shandrikov.util.mapper;
 
 import org.shandrikov.dto.UserInDTO;
 import org.shandrikov.dto.UserOutDTO;

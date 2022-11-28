@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Payment, Long>{
-     List<Payment> findAllByEmail(String email);
+     List<Payment> findByEmail(String email);
 
      Optional<Payment> findByEmailAndPeriod(String email, YearMonth period);
 }
